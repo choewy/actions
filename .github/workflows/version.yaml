@@ -29,10 +29,3 @@ jobs:
           git config --global user.email "actions@github.com"
           npm version patch
           git push origin ${{ github.base_ref }}
-
-      - name: Tagging
-        run: |
-          tag=$(cat package.json | grep '"version"' | awk -F '"' '{print $4}')
-          tag=${{ github.base_ref }}-$tag
-          git tag $tag
-          git push origin $tag
